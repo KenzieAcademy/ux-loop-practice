@@ -52,7 +52,12 @@ for (let a of arr) {
 */
 
 function addExerciseToRoutine(routine, exercise, numRepetitions) {
-    // Your Code Here!
+    let routineOne = [];
+    let counter = 0;
+    while (counter < numRepetitions) {
+        routine.push(exercise);
+        counter++;
+    }
 }
 
 /* 
@@ -103,7 +108,11 @@ function doAction(action) {
 */
 
 function performRoutine(routine) {
-    // Your Code Here!
+    let exerciseIndex = [0]
+    while (actionsPerformed.length < routineTwo.length) {
+        doAction(routineTwo[exerciseIndex]);
+        exerciseIndex++;
+    }
 }
 
 /* 
@@ -144,7 +153,11 @@ console.log(compareArray(routineTwo, actionsPerformed));
 
 function countRepsOfActionInRoutine(routine, action) {
     let count = 0;
-    // Your Code Here!
+    while (routineThree.includes(action)) {
+        let rep = routineThree.lastIndexOf(action)
+        routineThree.splice(rep)
+        count++;
+    }
     return count;
 }
 
@@ -197,8 +210,19 @@ console.log(countRepsOfActionInRoutine(routineThree, "crunch") == 0);
 */
 
 function removeExerciseFromRoutine(routine, exercise) {
-    // Your Code Here!
+    let rep = 0;
+    if (routineFour.includes(exercise)) {
+        while (routineFour.includes(exercise)) {
+            let rep = routine.indexOf(exercise);
+            routineFour.splice(rep, 1);
+        }
+    } else {
+        return routineFour
+    }
+
+
 }
+
 
 
 /*
@@ -224,9 +248,9 @@ console.log(compareArray(routineFour, ["pushup", "pushup", "pullup", "pullup", "
 /*
    -------TEST UTILITIES------------------------------------------------------
    These are utilities for the tests.
-
+ 
    Do not modify anything below this line.
-
+ 
    But read through these and try to understand what they  do.
 */
 function copyArray(arr) {
@@ -254,3 +278,4 @@ function compareArray(arr1, arr2) {
 
     return true;
 }
+
