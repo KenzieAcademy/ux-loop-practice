@@ -24,7 +24,9 @@
 */
 
 function addExerciseToRoutineForLoop(routine, exercise, numRepetitions) {
-    // Your Code Here!  Use a For loop, not a for-of loop.
+    for (let index = 0; index < numRepetitions; index++){
+        routine.push(exercise)
+    }
 }
 
 /* 
@@ -46,7 +48,7 @@ console.log(compareArray(routineOne, ["situp", "situp", "situp", "situp", "pushu
 /* ------------------------------------------------
     Exercise Two
 
-    Your trainer has given you a schedule of how many situps to do every day for the next two week.
+    Your trainer has given you a schedule of how many situps to do every day for the next two weeks.
 
     The schedule might look like this:
     let schedule = [5, 5, 8, 10, 3, 12, 15, 20, 10, 22, 25, 30, 15, 40];
@@ -61,10 +63,19 @@ console.log(compareArray(routineOne, ["situp", "situp", "situp", "situp", "pushu
 */
 
 function findMinimumAndMaximum(schedule) {
-    let min = Number.POSITIVE_INFINITY;
-    let max = 0;
-    // Your Code Here!
-    return [min, max];
+    minValue = Infinity; 
+    maxValue = -Infinity; 
+
+    for (item of schedule) { 
+        // find minimum value 
+        if (item < minValue) 
+            minValue = item; 
+
+        // find maximum value 
+        if (item > maxValue) 
+            maxValue = item; 
+    } 
+    return [minValue, maxValue];
 }
 
 /* 
@@ -105,11 +116,11 @@ console.log(result[0] == 0 && result[1] == 10);
     Now they have started writing routines as a string like this:
     let routineString = "20:situp|5:pushup|10:legraise|2:pullup";
     
-    Each exercise is separate by a veritcal bar character |
+    Each exercise is separated by a vertical bar character |
 
     An exercise looks like this
     20:situp
-    Within each exercise, there is a coloon character : separating the number of reps and the exercise.
+    Within each exercise, there is a colon character : separating the number of reps and the exercise.
 
     Create the convertRoutineFromNewFormat function, which converts the new routine format
     into the old one.
@@ -121,7 +132,7 @@ console.log(result[0] == 0 && result[1] == 10);
     
     Create a new array for the converted routine, and return it from the function.
 
-    Hint: you can use the .split() function on  a string to break it up into parts.
+    Hint: you can use the .split() function on a string to break it up into parts.
     https://www.w3schools.com/jsref/jsref_split.asp
     
     let parts = "a|b|c".split('|');
@@ -133,7 +144,13 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
     let routine = [];
-    // Your Code Here!
+    let routineArray = routineString.split("|"); // ["5:situp" , "4:pushup" , "3:legraise" , "2:pullup"]
+    for(let i = 0; i < routineArray.length; i++) {
+        let itemArray = routineArray[i].split(":"); // ["5" , "situp" ...]
+        for(let count = 0; count < itemArray[0]; count++) {
+            routine.push(itemArray[1]); // ["situp", "situp", "situp", "situp", "situp",...]
+        }
+    }
     return routine;
 }
 
@@ -183,7 +200,7 @@ console.log(compareArray(routineThree, [
     pushup = 4 points
     pullup = 10 points
 
-    Given a routine, count up sum of points to create a score.
+    Given a routine, count up the sum of points to create a score.
 
     So the routine
     ["situp", "situp", "legraise", "pushup", "pushup", "pullup"]
@@ -202,7 +219,27 @@ console.log(compareArray(routineThree, [
 
 function calculateRoutineDifficulty(routine) {
     let difficulty = "";
-    // Your Code Here!
+    let total = 0;
+    for(let exercise of routine) {
+        if(exercise === "situp"){
+            total = total + 1;
+        }else if(exercise === "pushup") {
+            total = total + 4;
+        }else if(exercise === "legraise") {
+            total = total + 2;
+        }else if (exercise === "pullup") {
+            total = total + 10;
+        }
+    }
+
+    if (total < 30){
+        difficulty = "Easy"
+    }else if (30<=total && total< 60){
+        difficulty = "Hard"
+    }else if (total > 60) {
+        difficulty = "Insane"
+    }
+
     return difficulty;
 }
 
