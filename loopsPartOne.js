@@ -118,7 +118,7 @@ function performRoutine(routine) {
             doAction(routine[count])
             count++;
         }
-    }
+}
 
 
 /* 
