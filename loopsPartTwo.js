@@ -24,7 +24,9 @@
 */
 
 function addExerciseToRoutineForLoop(routine, exercise, numRepetitions) {
-    // Your Code Here!  Use a For loop, not a for-of loop.
+    for (let index = 0; index < numRepetitions; index++){
+        routine.push(exercise)
+    }  
 }
 
 /* 
@@ -61,12 +63,20 @@ console.log(compareArray(routineOne, ["situp", "situp", "situp", "situp", "pushu
 */
 
 function findMinimumAndMaximum(schedule) {
-    let min = Number.POSITIVE_INFINITY;
-    let max = 0;
-    // Your Code Here!
-    return [min, max];
-}
+    minValue = Infinity; 
+    maxValue = -Infinity; 
 
+    for (item of schedule) { 
+        // find minimum value 
+        if (item < minValue) 
+            minValue = item; 
+
+        // find maximum value 
+        if (item > maxValue) 
+            maxValue = item; 
+    } 
+    return [minValue, maxValue];
+}
 /* 
    -------TESTS----------------------------------------------------------------
    Run these commands to make sure you did it right. They should all be true.
@@ -133,10 +143,15 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
     let routine = [];
-    // Your Code Here!
+    let routineArray = routineString.split("|"); // ["5:situp" , "4:pushup" , "3:legraise" , "2:pullup"]
+    for(let i = 0; i < routineArray.length; i++) {
+        let itemArray = routineArray[i].split(":"); // ["5" , "situp" ...]
+        for(let count = 0; count < itemArray[0]; count++) {
+            routine.push(itemArray[1]); // ["situp", "situp", "situp", "situp", "situp",...]
+        }
+    }
     return routine;
 }
-
 /* 
    -------TESTS----------------------------------------------------------------
    Run these commands to make sure you did it right. They should all be true.
@@ -200,9 +215,30 @@ console.log(compareArray(routineThree, [
     "Easy", "Hard", or "Insane"
 */
 
+
 function calculateRoutineDifficulty(routine) {
     let difficulty = "";
-    // Your Code Here!
+    let total = 0;
+    for(let exercise of routine) {
+        if(exercise === "situp"){
+            total = total + 1;
+        }else if(exercise === "pushup") {
+            total = total + 4;
+        }else if(exercise === "legraise") {
+            total = total + 2;
+        }else if (exercise === "pullup") {
+            total = total + 10;
+        }
+    }
+
+    if (total < 30){
+        difficulty = "Easy"
+    }else if (30<=total && total< 60){
+        difficulty = "Hard"
+    }else if (total > 60) {
+        difficulty = "Insane"
+    }
+
     return difficulty;
 }
 
