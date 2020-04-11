@@ -230,9 +230,6 @@ function removeExerciseFromRoutine(routine, exercise) {
             
             }
         }
-    
-
-
 
 /*
    -------TESTS---------------------------------------------------------------
