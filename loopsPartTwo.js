@@ -133,6 +133,12 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
     let routine = [];
+    routine = routineString.split("|")
+      for ( let set of routine){
+          set = set.split(:);
+          const numOfReps = setArray[];
+          let exercise = setArray[1];
+      }
     // Your Code Here!
     return routine;
 }
