@@ -109,15 +109,13 @@ function doAction(action) {
    -------START OF YOUR CODE----------------------------------------------------
 */
 
-function performRoutine() {
-    while (exercise < actionsPerformed.index) {
-      let index = 0;
-      while( index < routine.length){
-          let exercise = routine[index];
-          doAction(exercise);
-          return 
-      }
-
+function performRoutine(routine) {
+  let index = 0;
+  while (index < routine.length) {
+    let exercise = routine[index];
+    doAction(exercise);
+    index++;
+  }
 }
 
 /* 
@@ -258,16 +256,16 @@ console.log(countRepsOfActionInRoutine(routineThree, "crunch") == 0);
 */
 
 function removeExerciseFromRoutine(routine, exercise) {
-    let index = 0;
-    const routineLength = routine.length;
-    while (index < routineLength){
-        let currentEcercise = routine[index];
-        if ( currentExercise === exercise){
-            routine.splice(index, 1)
-        } else {
-            index++
-        }
+  let index = 0;
+  const routineLength = routine.length;
+  while (index < routineLength) {
+    let currentExercise = routine[index];
+    if (currentExercise === exercise) {
+      routine.splice(index, 1);
+    } else {
+      index++;
     }
+  }
   // Your Code Here!
 }
 
@@ -351,14 +349,14 @@ function copyArray(arr) {
 
 function compareArray(arr1, arr2) {
   if (!arr1 || !arr2 || arr1.length != arr2.length) {
-      return false;
-    }
+    return false;
+  }
 
   for (let index in arr1) {
-      if (arr1[index] != arr2[index]) {
-        return false;
-      }
+    if (arr1[index] != arr2[index]) {
+      return false;
     }
+  }
 
   return true;
-} 
+}
