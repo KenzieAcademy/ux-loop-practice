@@ -52,7 +52,11 @@ for (let a of arr) {
 */
 
 function addExerciseToRoutine(routine, exercise, numRepetitions) {
-    // Your Code Here!
+    let index = 0;
+    while(index < numRepetitions){
+        routine.push(exercise)
+        index++
+    }
 }
 
 /* 
@@ -101,9 +105,12 @@ function doAction(action) {
 /* 
    -------START OF YOUR CODE----------------------------------------------------
 */
-
-function performRoutine(routine) {
-    // Your Code Here!
+function performRoutine(routine){
+    let index = 0;
+    while (index < routine.length){
+    doAction(routine[index])
+    index++;
+    }
 }
 
 /* 
@@ -144,10 +151,15 @@ console.log(compareArray(routineTwo, actionsPerformed));
 
 function countRepsOfActionInRoutine(routine, action) {
     let count = 0;
-    // Your Code Here!
-    return count;
+    let i = 0;
+    while(i < routine.length){
+        if(routine[i] == action){
+          count++;
+        }
+       i++    
+    }
+    return count
 }
-
 /* 
    -------TESTS---------------------------------------------------------------
    Run these commands to make sure you did it right. They should all be true.
@@ -197,7 +209,17 @@ console.log(countRepsOfActionInRoutine(routineThree, "crunch") == 0);
 */
 
 function removeExerciseFromRoutine(routine, exercise) {
-    // Your Code Here!
+    let index = 0;
+    while(index < routine.length){
+        let currentExercise = routine[index];
+        if (currentExercise === exercise){
+            routine.splice(index, 1)
+        }
+        else{
+            index++;
+        }
+    }
+
 }
 
 
