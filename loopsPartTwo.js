@@ -70,8 +70,16 @@ console.log(
 function findMinimumAndMaximum(schedule) {
   let min = Number.POSITIVE_INFINITY;
   let max = 0;
-  // Your Code Here!
-  return [min, max];
+  for (index = 0; index < schedule.length; index++) {
+    if (schedule[index] <= min) {
+      min = schedule[index];
+    }
+    if (schedule[index] > max) {
+      max = schedule[index];
+    }
+  }
+  let result = [min, max];
+  return result;
 }
 
 /* 
@@ -110,11 +118,11 @@ console.log(result[0] == 0 && result[1] == 10);
     Now they have started writing routines as a string like this:
     let routineString = "20:situp|5:pushup|10:legraise|2:pullup";
     
-    Each exercise is separate by a veritcal bar character |
+    Each exercise is separated by a veritcal bar character |
 
     An exercise looks like this
     20:situp
-    Within each exercise, there is a coloon character : separating the number of reps and the exercise.
+    Within each exercise, there is a colon character : separating the number of reps and the exercise.
 
     Create the convertRoutineFromNewFormat function, which converts the new routine format
     into the old one.
@@ -138,14 +146,17 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
   let routine = [];
+  let result = [];
   routine = routineString.split("|");
-  //   for ( let set of routine){
-  //       set = set.split(:);
-  //       const numOfReps = setArray[];
-  //       let exercise = setArray[1];
-  //   }
-  // Your Code Here!
-  return routine;
+  for (let set of routine) {
+    setArray = set.split(":");
+    let numOfReps = setArray[0];
+    let exercise = setArray[1];
+    for (index = 0; index < numOfReps; index++) {
+      result.push(exercise);
+    }
+  }
+  return result;
 }
 
 /* 
@@ -221,8 +232,36 @@ console.log(compareArray(routineThree, ["situp", "situp", "situp"]));
 
 function calculateRoutineDifficulty(routine) {
   let difficulty = "";
-  // Your Code Here!
-  return difficulty;
+  let situpPointValue = 1;
+  let legraisePointValue = 2;
+  let pushupPointValue = 4;
+  let pullupPointValue = 10;
+  let totalPoints = 0;
+  for (index = 0; index < routine.length; index++) {
+    if (routine[index] === "situp") {
+      routine[index] = situpPointValue;
+      totalPoints = situpPointValue + totalPoints;
+    } else if (routine[index] === "legraise") {
+      routine[index] = legraisePointValue;
+      totalPoints = legraisePointValue + totalPoints;
+    } else if (routine[index] === "pushup") {
+      routine[index] = pushupPointValue;
+      totalPoints = pushupPointValue + totalPoints;
+    } else if (routine[index] === "pullup") {
+      routine[index] = pullupPointValue;
+      totalPoints = pullupPointValue + totalPoints;
+    }
+  }
+  if (totalPoints < 30) {
+    let difficulty = "Easy";
+    return difficulty;
+  } else if (totalPoints >= 30 && totalPoints < 60) {
+    let difficulty = "Hard";
+    return difficulty;
+  } else if (totalPoints >= 60) {
+    let difficulty = "Insane";
+    return difficulty;
+  }
 }
 
 /* 
