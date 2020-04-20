@@ -24,7 +24,8 @@
 */
 
 function addExerciseToRoutineForLoop(routine, exercise, numRepetitions) {
-    // Your Code Here!  Use a For loop, not a for-of loop.
+    for (i=0; i < numRepetitions; i++)
+    routine.push(exercise);
 }
 
 /* 
@@ -61,9 +62,15 @@ console.log(compareArray(routineOne, ["situp", "situp", "situp", "situp", "pushu
 */
 
 function findMinimumAndMaximum(schedule) {
-    let min = Number.POSITIVE_INFINITY;
-    let max = 0;
-    // Your Code Here!
+    let min = Infinity;
+    let max = -Infinity;
+    for(let item of schedule){
+        if(item < min)
+        min = item;
+
+        if(item > max)
+        max = item;
+    }
     return [min, max];
 }
 
@@ -109,7 +116,7 @@ console.log(result[0] == 0 && result[1] == 10);
 
     An exercise looks like this
     20:situp
-    Within each exercise, there is a coloon character : separating the number of reps and the exercise.
+    Within each exercise, there is a colon character : separating the number of reps and the exercise.
 
     Create the convertRoutineFromNewFormat function, which converts the new routine format
     into the old one.
@@ -133,7 +140,18 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
     let routine = [];
-    // Your Code Here!
+    let exercises = routineString.split("|");
+    // console.log("array before the loop",exercises)
+    for (let i = 0; i < exercises.length; i++){
+    let exerciseString = exercises[i];
+    // console.log("exercise inside the loop",exerciseString);
+    let exerciseArray = exerciseString.split(":");
+    let numberOfReps = exerciseArray[0];
+    let nameOfExercise = exerciseArray[1];
+    for(let i=0; i < numberOfReps; i++){
+        routine.push(nameOfExercise);
+    }
+    } 
     return routine;
 }
 
@@ -202,7 +220,7 @@ console.log(compareArray(routineThree, [
 
 function calculateRoutineDifficulty(routine) {
     let difficulty = "";
-    // Your Code Here!
+    // To be continued. Your Code Here!
     return difficulty;
 }
 
