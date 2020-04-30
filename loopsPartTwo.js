@@ -24,7 +24,9 @@
 */
 
 function addExerciseToRoutineForLoop(routine, exercise, numRepetitions) {
-    // Your Code Here!  Use a For loop, not a for-of loop.
+   for(let index = 0; index < numRepetitions; index++){
+       routine.push(exercise)
+   }
 }
 
 /* 
@@ -61,9 +63,17 @@ console.log(compareArray(routineOne, ["situp", "situp", "situp", "situp", "pushu
 */
 
 function findMinimumAndMaximum(schedule) {
-    let min = Number.POSITIVE_INFINITY;
-    let max = 0;
-    // Your Code Here!
+    let min = schedule [0];
+    let max = schedule [0];
+
+    for(let index = 0; index < schedule.length; index++){
+        if (schedule[index] < min)
+            min = schedule[index];
+
+        if (schedule[index] > max)
+            max = schedule[index];
+
+    }
     return [min, max];
 }
 
@@ -133,7 +143,19 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
     let routine = [];
-    // Your Code Here!
+   
+    routineArray = routineString.split("|");
+
+    for(let index = 0; index < routineArray.length; index++){
+        let array = routineArray[index].split(":");
+
+        for(let newCount = 0; newCount < array[0]; newCount++){
+            routine.push(array[1]);
+
+        }
+    }
+
+
     return routine;
 }
 
@@ -202,7 +224,40 @@ console.log(compareArray(routineThree, [
 
 function calculateRoutineDifficulty(routine) {
     let difficulty = "";
-    // Your Code Here!
+    let score = 0;
+
+    for(let index = 0; index < routine.length; index++){
+        let exercise = routine[index];
+        if (exercise === "situp"){
+            score += 1;
+
+        }else if(exercise === "pushup")
+        {
+            score += 4;
+
+        }else if(exercise === "legraise")
+        {
+            score += 2;
+
+        }else if(exercise === "pullup")
+        { 
+            score +=10;
+        }
+            if(score < 30)
+            {
+                difficulty = "Easy"
+    
+            }else if(30 <= score && score < 60)
+            {
+                difficulty = "Hard"
+            
+            }else if(score > 60)
+            {
+                difficulty = "Insane"
+            }
+        }
+
+
     return difficulty;
 }
 
