@@ -43,7 +43,12 @@
 */
 
 function addExerciseToRoutine(routine, exercise, numRepetitions) {
-  // Your Code Here!
+  let index = 0
+  while (index < numRepetitions) {
+    routine.push(exercise)
+    index++
+  }
+
 }
 
 /* 
@@ -97,7 +102,8 @@ function doAction(action) {
 */
 
 function performRoutine(routine) {
-  // Your Code Here!
+ while 
+ 
 }
 
 /* 
