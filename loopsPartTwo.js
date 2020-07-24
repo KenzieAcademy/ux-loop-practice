@@ -67,9 +67,14 @@ console.log(
 */
 
 function findMinimumAndMaximum(schedule) {
-  let min = Number.POSITIVE_INFINITY;
-  let max = 0;
-  // Your Code Here!
+  let min = Infinity;
+  let max = -Infinity;
+
+  for (let item of schedule) {
+    if (item < min) min = item;
+
+    if (item > max) max = item;
+  }
   return [min, max];
 }
 
@@ -113,7 +118,7 @@ console.log(result[0] == 0 && result[1] == 10);
 
     An exercise looks like this
     20:situp
-    Within each exercise, there is a coloon character : separating the number of reps and the exercise.
+    Within each exercise, there is a colon character : separating the number of reps and the exercise.
 
     Create the convertRoutineFromNewFormat function, which converts the new routine format
     into the old one.
@@ -137,7 +142,15 @@ console.log(result[0] == 0 && result[1] == 10);
 
 function convertRoutineFromNewFormat(routineString) {
   let routine = [];
-  // Your Code Here!
+  routineArray = routineString.split("|");
+
+  for (let index = 0; index < routineArray.length; index++) {
+    let array = routineArray[index].split(":");
+
+    for (let newCount = 0; newCount < array[0]; newCount++) {
+      routine.push(array[1]);
+    }
+  }
   return routine;
 }
 
@@ -214,7 +227,27 @@ console.log(compareArray(routineThree, ["situp", "situp", "situp"]));
 
 function calculateRoutineDifficulty(routine) {
   let difficulty = "";
-  // Your Code Here!
+  let score = 0;
+
+  for (let index = 0; index < routine.length; index++) {
+    let exercise = routine[index];
+    if (exercise == "situp") {
+      score += 1;
+    } else if (exercise == "pushup") {
+      score += 4;
+    } else if (exercise == "legraise") {
+      score += 2;
+    } else if (exercise == "pullup") {
+      score += 10;
+    }
+    if (score < 30) {
+      difficulty = "Easy";
+    } else if (30 <= score && score < 60) {
+      difficulty = "Hard";
+    } else if (score > 60) {
+      difficulty = "Insane";
+    }
+  }
   return difficulty;
 }
 
