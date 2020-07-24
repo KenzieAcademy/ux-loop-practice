@@ -68,7 +68,7 @@ console.log(
 
 function findMinimumAndMaximum(schedule) {
   let min = Infinity;
-  let max = -Infinity;
+  let max = 0;
 
   for (let item of schedule) {
     if (item < min) min = item;
